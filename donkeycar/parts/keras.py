@@ -15,8 +15,11 @@ from tensorflow.python.keras.callbacks import ModelCheckpoint, EarlyStopping
 from donkeycar import util
 
 
-class KerasPilot:
-
+class KerasPilot(object):
+    def __init__(self):
+        self.model = None
+        self.optimizer = "adam"
+    
     def load(self, model_path):
         self.model = load_model(model_path)
 
@@ -49,7 +52,7 @@ class KerasPilot:
 
         if use_early_stop:
             callbacks_list.append(early_stop)
-
+        
         hist = self.model.fit_generator(
             train_gen,
             steps_per_epoch=steps,
@@ -325,7 +328,7 @@ def rnn_lstm(seq_length=3, num_outputs=2, image_shape=(120,160,3)):
     from keras.layers import LSTM
     from keras.layers.wrappers import TimeDistributed as TD
 
-    img_seq_shape = (seq_length,) + image_shape   
+    img_seq_shape = (seq_length,) + image_shape
     img_in = Input(batch_shape = img_seq_shape, name='img_in')
     
     x = Sequential()
