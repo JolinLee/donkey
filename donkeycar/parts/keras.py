@@ -328,7 +328,11 @@ def rnn_lstm(seq_length=3, num_outputs=2, image_shape=(120,160,3)):
     from keras.layers import LSTM
     from keras.layers.wrappers import TimeDistributed as TD
 
+<<<<<<< HEAD
     img_seq_shape = (seq_length,) + image_shape
+=======
+    img_seq_shape = (seq_length,) + image_shape   
+>>>>>>> b1c6c28a6e813ea5a8a73fe6b7a93ca634c9ff27
     img_in = Input(batch_shape = img_seq_shape, name='img_in')
     
     x = Sequential()
